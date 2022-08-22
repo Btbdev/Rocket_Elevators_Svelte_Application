@@ -2,14 +2,31 @@
 	import { enhance } from '$lib/form';
 	import { scale } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
+	import { onMount } from 'svelte';
 
-	/** @type {import('./$types').PageData} */
-	export let data;
+
+	let user = { gift: false };
+	function toggle () {
+		user.gift = !user.gift
+	}
+
+	onMount(async function () {
+		const res = await fetch(`https://express-api.codeboxxtest.xyz/NFT/gift/0xec206446346bf108e31cb79d28e93070dcc99fb8`);
+		console.log("the gift is:", res); 
+		const data = await res.json();
+		console.log(data)
+
+	});
+	
+  
+  
 
 
 // <!-- to add a test Mathieu -->
+	/** @type {import('./$types').PageData} */
+	export let data;
 
-	import { onMount } from "svelte";
+	
 	import { apiData, drinkNames } from './store.js';
 	
 	onMount(async () => {
@@ -23,17 +40,32 @@
 		return [];
 	  });
 	});
+
 </script>
 
 <svelte:head>
-	<title>Portfolio</title>
+	<title>NFT minting</title>
 	<meta name="description" content="A todo list app" />
 </svelte:head>
 
 <div class="todos">
-	<h1>Portfolio - ici le test initial de l'app crée un form via api.js et fait des get/ftech etc...</h1>
+	<h1>NFT - Ici l'app fait son endpoint pour le user token (cette page accepte le javascript !)...</h1>
+	
+	<div class="todos">
+		<h1>Wallet address ???</h1>
+		{#if user.gift}
+		<button on:click={toggle}>
+			Log out
+		</button>
+	{/if}
 
-	<form
+	{#if !user.gift}
+		<button on:click={toggle}>
+			Log in
+		</button>
+	{/if}
+	</div>
+	<!-- <form
 		class="new"
 		action="/todos"
 		method="post"
@@ -84,9 +116,9 @@
 				<button class="delete" aria-label="Delete todo" disabled={todo.pending_delete} />
 			</form>
 		</div>
-	{/each}
+	{/each} -->
 
-	<div class="todos">
+	<!-- <div class="todos">
 		<h1>Display of cards with NFT collection available to buy. The details to render are copming from endpoints to show title name, description and image</h1>
 		<h1>Whiskey Drinks Menu</h1>
 		<ul>
@@ -94,8 +126,8 @@
 			<li>{drinkName}</li>
 		{/each}
 		</ul>
-	
-	</div>
+	</div> -->
+
 </div>
 
 <style>
