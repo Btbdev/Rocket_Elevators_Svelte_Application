@@ -5,6 +5,24 @@
 
 	/** @type {import('./$types').PageData} */
 	export let data;
+
+
+// <!-- to add a test Mathieu -->
+
+	import { onMount } from "svelte";
+	import { apiData, drinkNames } from './store.js';
+	
+	onMount(async () => {
+	  fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Bourbon")
+	  .then(response => response.json())
+	  .then(data => {
+			console.log(data);
+		apiData.set(data);
+	  }).catch(error => {
+		console.log(error);
+		return [];
+	  });
+	});
 </script>
 
 <svelte:head>
@@ -70,6 +88,13 @@
 
 	<div class="todos">
 		<h1>Display of cards with NFT collection available to buy. The details to render are copming from endpoints to show title name, description and image</h1>
+		<h1>Whiskey Drinks Menu</h1>
+		<ul>
+		{#each $drinkNames as drinkName}
+			<li>{drinkName}</li>
+		{/each}
+		</ul>
+	
 	</div>
 </div>
 
