@@ -36,7 +36,7 @@
 		You want to be more involve in your commmunity ? Let's join our force and help us finance special foundation that are doing
 		incredible work around those who suffered elevator related traumas in their life. 
 		<br />
-		Let's support financially those fundations and buy an <strong><a href="/nft">NFT</a></strong> !
+		Let's support financially those fundations and buy an <strong><a href="/nftgood">NFT</a></strong> !
 	</p>
 
 	<!-- <Counter /> -->
