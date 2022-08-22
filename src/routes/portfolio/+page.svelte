@@ -8,12 +8,12 @@
 </script>
 
 <svelte:head>
-	<title>Todos</title>
+	<title>Portfolio</title>
 	<meta name="description" content="A todo list app" />
 </svelte:head>
 
 <div class="todos">
-	<h1>Todos</h1>
+	<h1>Portfolio - ici le test initial de l'app crée un form via api.js et fait des get/ftech etc...</h1>
 
 	<form
 		class="new"
@@ -67,6 +67,10 @@
 			</form>
 		</div>
 	{/each}
+
+	<div class="todos">
+		<h1>Display of cards with NFT collection available to buy. The details to render are copming from endpoints to show title name, description and image</h1>
+	</div>
 </div>
 
 <style>

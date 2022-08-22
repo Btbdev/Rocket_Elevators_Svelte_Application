@@ -21,8 +21,23 @@
 	</h1>
 
 	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
+		This could be a paragraph <strong>src/routes/+page.svelte</strong>
 	</h2>
+	<h2>
+		Content of the home page : details about the nft collection (to my discretion) and 
+		a Call to Action to reach the nft page.
+	</h2>
+	<p>
+		To our most loyal customer, we are proud to present to you our limited NFT collection of elevator themed artwork !
+		<br />
+	</p>
+
+	<p>
+		You want to be more involve in your commmunity ? Let's join our force and help us finance special foundation that are doing
+		incredible work around those who suffered elevator related traumas in their life. 
+		<br />
+		Let's support financially those fundations and buy an <strong><a href="/nft">NFT</a></strong> !
+	</p>
 
 	<!-- <Counter /> -->
 </section>
@@ -40,6 +55,10 @@
 		width: 100%;
 	}
 
+	p {
+		text-align: center;
+	}
+
 	.welcome {
 		display: block;
 		position: relative;
@@ -55,4 +74,5 @@
 		top: 0;
 		display: block;
 	}
+
 </style>
