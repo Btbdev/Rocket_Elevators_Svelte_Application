@@ -5,6 +5,7 @@
 	import { onMount } from 'svelte';
 
 
+// to add a button that will trigger the right redirecttion for the user, depending on its wallet content
 	let user = { gift: false };
 	function toggle () {
 		user.gift = !user.gift
@@ -17,10 +18,33 @@
 		console.log(data)
 
 	});
-	
-  
-  
 
+	onMount(async function () {
+		const tokenBlance = await fetch(`https://express-api.codeboxxtest.xyz/ERC20/balance/0xf4f555ca1586c40067cd215578f123d30813de02`);
+		console.log("the tokenBlance is:", tokenBlance); 
+		const data = await tokenBlance.json();
+		console.log(data)
+
+	});
+	
+	let foo = 'baz'
+	let bar = 'qux'
+	let result = null 
+
+	async function doPost () {
+		const mintNft = await fetch(`https://express-api.codeboxxtest.xyz/ERC20/balance/0xf4f555ca1586c40067cd215578f123d30813de02`, {
+		method: 'POST',
+		body: JSON.stringify({
+			foo,
+			bar
+		})
+	})
+		console.log("the minnft is:", mintNft); 
+		const json = await mintNft.json()
+		result = JSON.stringify(json)
+		console.log(result)
+
+}
 
 // <!-- to add a test Mathieu -->
 	/** @type {import('./$types').PageData} */
@@ -61,10 +85,15 @@
 
 	{#if !user.gift}
 		<button on:click={toggle}>
-			Log in
+			Buy Tokens
 		</button>
 	{/if}
 	</div>
+	<div class="todos">
+		<h1>Account balance</h1>
+		
+	</div>
+
 	<!-- <form
 		class="new"
 		action="/todos"
