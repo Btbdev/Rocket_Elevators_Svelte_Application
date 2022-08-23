@@ -7,12 +7,12 @@
 	import { defaultEvmStores } from 'svelte-web3'
 
 // to add the connection with Metamask
-onMount(
-    () => {
-      // add a test to return in SSR context
-      defaultEvmStores.setProvider()
-    }
-  )
+	onMount(
+		() => {
+		// add a test to return in SSR context
+		defaultEvmStores.setProvider()
+		}
+	)
 
 
 
@@ -23,7 +23,7 @@ onMount(
 	}
 
 	onMount(async function () {
-		const res = await fetch(`https://express-api.codeboxxtest.xyz/NFT/gift/0xec206446346bf108e31cb79d28e93070dcc99fb8`);
+		const res = await fetch(`https://express-api.codeboxxtest.xyz/NFT/gift/0x57dE461153FD012cA41B2adFFd8E7A6D9B9cd520`);
 		console.log("the gift is:", res); 
 		const data = await res.json();
 		console.log(data)	
@@ -31,7 +31,7 @@ onMount(
 	});
 
 	onMount(async function () {
-		const tokenBlance = await fetch(`https://express-api.codeboxxtest.xyz/ERC20/balance/0xf4f555ca1586c40067cd215578f123d30813de02`);
+		const tokenBlance = await fetch(`https://express-api.codeboxxtest.xyz/ERC20/balance/0x57dE461153FD012cA41B2adFFd8E7A6D9B9cd520`);
 		console.log("the tokenBlance is:", tokenBlance); 
 		const data = await tokenBlance.json();
 		console.log(data)

@@ -2,12 +2,60 @@
 	import { enhance } from '$lib/form';
 	import { scale } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
+	import Card from '../shared/card.svelte';
+	
+	let array = [
+		{
+			"name": "Rocket Elevators #1",
+			"description": "Rocket Elevators NFT Collection",
+			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
+		},
+		{
+			"name": "Rocket Elevators #2",
+			"description": "Rocket Elevators NFT Collection",
+			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
+		},
+		{
+			"name": "Rocket Elevators #3",
+			"description": "Rocket Elevators NFT Collection",
+			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
+		},
+		{
+			"name": "Rocket Elevators #4",
+			"description": "Rocket Elevators NFT Collection",
+			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
+		},
+		{
+			"name": "Rocket Elevators #5",
+			"description": "Rocket Elevators NFT Collection",
+			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
+		},
+		{
+			"name": "Rocket Elevators #6",
+			"description": "Rocket Elevators NFT Collection",
+			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
+		},
+		{
+			"name": "Rocket Elevators #7",
+			"description": "Rocket Elevators NFT Collection",
+			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
+		},
+	]
+
 
 	/** @type {import('./$types').PageData} */
 	export let data;
 
+// <!-- to add a test Mathieu portfolios cards-->
 
-// <!-- to add a test Mathieu -->
+	onMount(async function () {
+		const nft = await fetch(`https://express-api.codeboxxtest.xyz/0xd1679bB3543e8aD195FF9f3Ac3436039bA389237`);
+		console.log("the nfts are:", nft); 
+		const data = await nft.json();
+		console.log(data)
+
+	});
+	
 
 	import { onMount } from "svelte";
 	import { apiData, drinkNames } from './store.js';
@@ -85,8 +133,56 @@
 			</form>
 		</div>
 	{/each} -->
+	<div class="divWrapper">
+		<h1>NFT cards</h1>
+		<div class='wrapperCard'>	
+			{#each array as nft}
+				<Card>
+					<h3>{nft.name}</h3>
+					<span>{nft.description}</span>	
+					<img class="image"
+					src={nft.image}
+					alt="test"
+					/>
+				</Card>
+			{/each}
+			 <!-- <Card
+				noBody
+				imgTop
+				imgSrc="../../img/theme/img-1-1000x600.jpg"
+				alt="Image placeholder">
+				
+				<div class="card-body">
+					<h3 class="card-title mb-4">Card title</h3>
+					<p class="card-text mb-4">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis
+					non dolore est fuga nobis ipsum illum eligendi nemo iure repellat,
+					soluta, optio minus ut reiciendis voluptates enim impedit
+					veritatis officiis.
+				</p>
+				
+				</div>
+			</Card> -->
+<!-- 
+			<Card>
+				<div class="">
+					<h3>Card presentation1</h3>
+					<p>Title</p>
+					<div>
+						<h4>description</h4>
+					</div>
+					<div>
+						<h4>Image link ?</h4>
+						
+							
+						
+					</div>
+				</div>				
+			</Card> -->
+		</div>
+	</div>	
 
-	<div class="todos">
+	<!-- <div class="todos">
 		<h1>Display of cards with NFT collection available to buy. The details to render are copming from endpoints to show object "" title name, description and image</h1>
 		<h1>Whiskey Drinks Menu</h1>
 		<ul>
@@ -95,16 +191,16 @@
 		{/each}
 		</ul>
 	
-	</div>
+	</div> -->
 </div>
 
 <style>
-	.todos {
+	/* .todos {
 		width: 100%;
 		max-width: var(--column-width);
 		margin: var(--column-margin-top) auto 0 auto;
 		line-height: 1;
-	}
+	} */
 
 	.new {
 		margin: 0 0 0.5rem 0;
@@ -130,8 +226,8 @@
 		text-align: center;
 	}
 
-	.todo {
-		display: grid;
+	/* .todo {
+		display: flex;
 		grid-template-columns: 2rem 1fr 2rem;
 		grid-gap: 0.5rem;
 		align-items: center;
@@ -142,7 +238,7 @@
 		filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.1));
 		transform: translate(-1px, -1px);
 		transition: filter 0.2s, transform 0.2s;
-	}
+	} */
 
 	.done {
 		transform: none;
@@ -206,4 +302,26 @@
 		transition: opacity 0.2s;
 		opacity: 1;
 	}
+
+	.wrapperCard {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		max-width: 100%;
+		background-color: aqua;
+		padding-top: 20px;
+	}	
+
+	.divWrapper {
+		background-color: blueviolet;
+		padding-top: 20px;
+	}
+
+	.image {
+		/* display: flex; */
+		/* justify-content: center; */
+		max-width: 200px;
+		padding-top: 20px;
+	}	
 </style>

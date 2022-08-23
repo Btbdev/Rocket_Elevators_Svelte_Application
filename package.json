@@ -17,7 +17,8 @@
 		"@types/cookie": "^0.5.1",
 		"prettier": "^2.6.2",
 		"prettier-plugin-svelte": "^2.7.0",
-		"svelte": "^3.46.0",
+		"rollup-plugin-copy": "^3.4.0",
+		"svelte": "^3.49.0",
 		"svelte-check": "^2.7.1",
 		"typescript": "^4.7.4",
 		"vite": "^3.0.8"
@@ -25,7 +26,12 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/fira-mono": "^4.5.0",
+		"bootstrap": "^5.2.0",
 		"cookie": "^0.4.1",
-		"svelte-web3": "^3.5.2"
+		"framework7-svelte": "^7.0.7",
+		"svelte-materialify": "^0.3.11",
+		"svelte-web3": "^3.5.2",
+		"sveltestrap": "^5.9.0",
+		"swiper": "^8.3.2"
 	}
 }
