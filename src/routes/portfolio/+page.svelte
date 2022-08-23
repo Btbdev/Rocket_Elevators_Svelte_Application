@@ -31,7 +31,7 @@
 </svelte:head>
 
 <div class="todos">
-	<h1>Portfolio - ici le test initial de l'app crée un form via api.js et fait des get/ftech etc...</h1>
+	<!-- <h1>Portfolio - ici le test initial de l'app crée un form via api.js et fait des get/ftech etc...</h1>
 
 	<form
 		class="new"
@@ -84,10 +84,10 @@
 				<button class="delete" aria-label="Delete todo" disabled={todo.pending_delete} />
 			</form>
 		</div>
-	{/each}
+	{/each} -->
 
 	<div class="todos">
-		<h1>Display of cards with NFT collection available to buy. The details to render are copming from endpoints to show title name, description and image</h1>
+		<h1>Display of cards with NFT collection available to buy. The details to render are copming from endpoints to show object "" title name, description and image</h1>
 		<h1>Whiskey Drinks Menu</h1>
 		<ul>
 		{#each $drinkNames as drinkName}

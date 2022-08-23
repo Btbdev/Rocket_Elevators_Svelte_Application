@@ -3,6 +3,17 @@
 	import { scale } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import { onMount } from 'svelte';
+	import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web3'
+	import { defaultEvmStores } from 'svelte-web3'
+
+// to add the connection with Metamask
+onMount(
+    () => {
+      // add a test to return in SSR context
+      defaultEvmStores.setProvider()
+    }
+  )
+
 
 
 // to add a button that will trigger the right redirecttion for the user, depending on its wallet content
@@ -15,8 +26,8 @@
 		const res = await fetch(`https://express-api.codeboxxtest.xyz/NFT/gift/0xec206446346bf108e31cb79d28e93070dcc99fb8`);
 		console.log("the gift is:", res); 
 		const data = await res.json();
-		console.log(data)
-
+		console.log(data)	
+		
 	});
 
 	onMount(async function () {
@@ -73,24 +84,24 @@
 </svelte:head>
 
 <div class="todos">
-	<h1>NFT - Ici l'app fait son endpoint pour le user token (cette page accepte le javascript !)...</h1>
+	<h1>Let's check your wallet</h1>
 	
-	<div class="todos">
+	<div class="todos-wallet">
 		<h1>Wallet address ???</h1>
 		{#if user.gift}
-		<button on:click={toggle}>
-			Log out
-		</button>
-	{/if}
+			<button on:click={toggle} href="/portfolio">Use my tokens !</button>
+				<!-- Use my tokens and buy NFT !
+			</button> -->
+		{/if}
 
-	{#if !user.gift}
-		<button on:click={toggle}>
-			Buy Tokens
-		</button>
-	{/if}
+		{#if !user.gift}
+			<button on:click={toggle} href="/portfolio">Buy tokens !</button>
+				<!-- Buy Tokens
+			</button> -->
+		{/if}
 	</div>
 	<div class="todos">
-		<h1>Account balance</h1>
+		<!-- <h1>Account balance</h1> -->
 		
 	</div>
 
@@ -165,6 +176,10 @@
 		max-width: var(--column-width);
 		margin: var(--column-margin-top) auto 0 auto;
 		line-height: 1;
+	}
+
+	.todos-wallet {
+		text-align: center;
 	}
 
 	.new {
