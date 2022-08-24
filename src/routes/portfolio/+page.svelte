@@ -4,42 +4,47 @@
 	import { flip } from 'svelte/animate';
 	import Card from '../shared/card.svelte';
 	
-	let array = [
-		{
-			"name": "Rocket Elevators #1",
-			"description": "Rocket Elevators NFT Collection",
-			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
-		},
-		{
-			"name": "Rocket Elevators #2",
-			"description": "Rocket Elevators NFT Collection",
-			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
-		},
-		{
-			"name": "Rocket Elevators #3",
-			"description": "Rocket Elevators NFT Collection",
-			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
-		},
-		{
-			"name": "Rocket Elevators #4",
-			"description": "Rocket Elevators NFT Collection",
-			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
-		},
-		{
-			"name": "Rocket Elevators #5",
-			"description": "Rocket Elevators NFT Collection",
-			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
-		},
-		{
-			"name": "Rocket Elevators #6",
-			"description": "Rocket Elevators NFT Collection",
-			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
-		},
-		{
-			"name": "Rocket Elevators #7",
-			"description": "Rocket Elevators NFT Collection",
-			"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
-		},
+	let array = [{}
+		// {
+		// 	"name": "Rocket Elevators #1",
+		// 	"description": "Rocket Elevators NFT Collection",
+		// 	"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
+		// },
+		// {
+		// 	"name": "Rocket Elevators #2",
+		// 	"description": "Rocket Elevators NFT Collection",
+		// 	"image": "https://ipfs.moralis.io:2053/ipfs/Qmf56Wu8Jwb77i1AjeJ1GniNEQfa8rWF8ZF7zUdZ4wchQK/RocketElevatorsNFTImage_2.png"
+		// },
+		// {
+		// 	"name": "Rocket Elevators #3",
+		// 	"description": "Rocket Elevators NFT Collection",
+		// 	"image": "https://ipfs.moralis.io:2053/ipfs/QmfTx5aCvkkJKyYRQ1WyCVfvuRDzX5CKxTsuGzNGr18XVn/RocketElevatorsNFTImage_3.png"
+		// },
+		// {
+		// 	"name": "Rocket Elevators #4",
+		// 	"description": "Rocket Elevators NFT Collection",
+		// 	"image": "https://ipfs.moralis.io:2053/ipfs/Qmd6DwwKr9ncFdsuK3Lvc9rDm6m3MPGyQSyN6NA4rFz77C/RocketElevatorsNFTImage_4.png"
+		// },
+		// {
+		// 	"name": "Rocket Elevators #5",
+		// 	"description": "Rocket Elevators NFT Collection",
+		// 	"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
+		// },
+		// {
+		// 	"name": "Rocket Elevators #6",
+		// 	"description": "Rocket Elevators NFT Collection",
+		// 	"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
+		// },
+		// {
+		// 	"name": "Rocket Elevators #7",
+		// 	"description": "Rocket Elevators NFT Collection",
+		// 	"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
+		// },
+		// {
+		// 	"name": "Rocket Elevators #8",
+		// 	"description": "Rocket Elevators NFT Collection",
+		// 	"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
+		// },
 	]
 
 
@@ -48,29 +53,53 @@
 
 // <!-- to add a test Mathieu portfolios cards-->
 
-	onMount(async function () {
-		const nft = await fetch(`https://express-api.codeboxxtest.xyz/0xd1679bB3543e8aD195FF9f3Ac3436039bA389237`);
-		console.log("the nfts are:", nft); 
-		const data = await nft.json();
-		console.log(data)
-
-	});
-	
-
 	import { onMount } from "svelte";
-	import { apiData, drinkNames } from './store.js';
+
+	let nfts = [];
 	
+
 	onMount(async () => {
-	  fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Bourbon")
-	  .then(response => response.json())
-	  .then(data => {
-			console.log(data);
-		apiData.set(data);
-	  }).catch(error => {
-		console.log(error);
-		return [];
-	  });
+		const nft = await fetch(`https://express-api.codeboxxtest.xyz/NFT/getWalletTokens/0x2ea73AD3f05a3E0Fb282583FFB964023739963CD`);
+		console.log("What is nft:", nft)
+		nfts = await nft.json();
+		// .then(response => response.json())
+		console.log("What is nfts:", nfts)
+		nfts.map(e => {
+			console.log(e)
+		})
+		
+		
+		
+		// .then(data => {
+		// 	console.log("What is data:", data);
+		// 	array.set(data);
+		// }).catch(error => {
+		// 	console.log(error);
+		// 	return [];
+		// });
+
+
+		// console.log("the nfts are:", nft); 
+		// const data = await nft.json();
+		// console.log(data)
+
 	});
+	
+
+	// import { onMount } from "svelte";
+	// import { apiData, drinkNames } from './store.js';
+	
+	// onMount(async () => {
+	//   fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Bourbon")
+	//   .then(response => response.json())
+	//   .then(data => {
+	// 		console.log(data);
+	// 	apiData.set(data);
+	//   }).catch(error => {
+	// 	console.log(error);
+	// 	return [];
+	//   });
+	// });
 </script>
 
 <svelte:head>
@@ -136,13 +165,13 @@
 	<div class="divWrapper">
 		<h1>NFT cards</h1>
 		<div class='wrapperCard'>	
-			{#each array as nft}
+			{#each nfts as nft}
 				<Card>
 					<h3>{nft.name}</h3>
 					<span>{nft.description}</span>	
 					<img class="image"
 					src={nft.image}
-					alt="test"
+					alt="nftimage"
 					/>
 				</Card>
 			{/each}
@@ -309,12 +338,10 @@
 		flex-wrap: wrap;
 		justify-content: space-between;
 		max-width: 100%;
-		background-color: aqua;
 		padding-top: 20px;
 	}	
 
 	.divWrapper {
-		background-color: blueviolet;
 		padding-top: 20px;
 	}
 
