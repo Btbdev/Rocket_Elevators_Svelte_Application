@@ -7,14 +7,40 @@
 	import { defaultEvmStores } from 'svelte-web3'
 
 // to add the connection with Metamask
+	
+    import RocketTokenContract from '../../RocketToken.json';
+    const NFTCONTRACT_ADDRESS = '0x5E2bB780fE31C097aF60A2D5B35726F102a75049';
+
+    let contractInstance;
+
+    $: checkAccount = $selectedAccount || '0x0000000000000000000000000000000000000000'
+    $: balance = $connected ? $web3.eth.getBalance(checkAccount) : ''
+
 	onMount(
-		() => {
-		// add a test to return in SSR context
-		defaultEvmStores.setProvider()
-		}
-	)
+      async () => {
+         await defaultEvmStores.setProvider()
+        contractInstance = await getContract(NFTCONTRACT_ADDRESS)
+        console.log(contractInstance)
+      })
 
+	async function getContract(address) {
+      const networkId = await $web3.eth.net.getId();
+      
+      
+      return new $web3.eth.Contract(
+          RocketTokenContract.abi,
+        "0x2f679c4fA4Fe7c1cB62D6fFbdC9879D3e221C93b", {
+          from: address,
+          gas: 2000000
+        }
+      );
+    }
 
+	async function approve()  {
+        await contractInstance.methods.approve(NFTCONTRACT_ADDRESS, 1).send({
+            from: $selectedAccount,
+        });
+    }
 
 // to add a button that will trigger the right redirecttion for the user, depending on its wallet content
 	let user = { gift: false };
@@ -87,7 +113,11 @@
 	<h1>Let's check your wallet</h1>
 	
 	<div class="todos-wallet">
-		<h1>Wallet address ???</h1>
+		<h1>Wallet address {checkAccount}</h1>
+
+		<button on:click={approve}>
+			Click me
+		</button>
 		{#if user.gift}
 			<button on:click={toggle} href="/portfolio">Use my tokens !</button>
 				<!-- Use my tokens and buy NFT !

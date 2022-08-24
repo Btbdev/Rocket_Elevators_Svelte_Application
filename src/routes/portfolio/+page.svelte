@@ -59,7 +59,7 @@
 	
 
 	onMount(async () => {
-		const nft = await fetch(`https://express-api.codeboxxtest.xyz/NFT/getWalletTokens/0x2ea73AD3f05a3E0Fb282583FFB964023739963CD`);
+		const nft = await fetch(`https://express-api.codeboxxtest.xyz/NFT/getWalletTokens/${checkAccount}`);
 		console.log("What is nft:", nft)
 		nfts = await nft.json();
 		// .then(response => response.json())
@@ -175,39 +175,6 @@
 					/>
 				</Card>
 			{/each}
-			 <!-- <Card
-				noBody
-				imgTop
-				imgSrc="../../img/theme/img-1-1000x600.jpg"
-				alt="Image placeholder">
-				
-				<div class="card-body">
-					<h3 class="card-title mb-4">Card title</h3>
-					<p class="card-text mb-4">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis
-					non dolore est fuga nobis ipsum illum eligendi nemo iure repellat,
-					soluta, optio minus ut reiciendis voluptates enim impedit
-					veritatis officiis.
-				</p>
-				
-				</div>
-			</Card> -->
-<!-- 
-			<Card>
-				<div class="">
-					<h3>Card presentation1</h3>
-					<p>Title</p>
-					<div>
-						<h4>description</h4>
-					</div>
-					<div>
-						<h4>Image link ?</h4>
-						
-							
-						
-					</div>
-				</div>				
-			</Card> -->
 		</div>
 	</div>	
 
