@@ -3,106 +3,101 @@
 	import { scale } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import { onMount } from 'svelte';
-	import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web3'
-	import { defaultEvmStores } from 'svelte-web3'
-	
+	import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web3';
+	import { defaultEvmStores } from 'svelte-web3';
 
-
-// to add the connection with Metamask
-    import RocketTokenContract from '../../RocketToken.json';
+	// to add the connection with Metamask
+	import RocketTokenContract from '../../RocketToken.json';
 	import { page } from '$app/stores';
-    const NFTCONTRACT_ADDRESS = '0x5E2bB780fE31C097aF60A2D5B35726F102a75049';
+	const NFTCONTRACT_ADDRESS = '0x5E2bB780fE31C097aF60A2D5B35726F102a75049';
 
-    let contractInstance;
+	let contractInstance;
 
-    $: checkAccount = $selectedAccount || '0x0000000000000000000000000000000000000000'
-    $: balance = $connected ? $web3.eth.getBalance(checkAccount) : ''
+	let isAddressEligible = false;
 
-	onMount(
-      async () => {
-         await defaultEvmStores.setProvider()
-        contractInstance = await getContract(NFTCONTRACT_ADDRESS)
-        console.log(contractInstance)
-      })
+	$: checkAccount = $selectedAccount || '0x0000000000000000000000000000000000000000';
+	$: balance = $connected ? $web3.eth.getBalance(checkAccount) : '';
 
-	async function getContract(address) {
-      const networkId = await $web3.eth.net.getId();
-      
-      
-      return new $web3.eth.Contract(
-          RocketTokenContract.abi,
-        "0x2f679c4fA4Fe7c1cB62D6fFbdC9879D3e221C93b", {
-          from: address,
-          gas: 2000000
-        }
-      );
-    }
-
-	async function approve()  {
-        await contractInstance.methods.approve(NFTCONTRACT_ADDRESS, 1).send({
-            from: $selectedAccount,
-        });
-    }
-
-// let isActive = false;
-// to check if the nft smart contract allowance   ${checkAccount}
-	onMount(async function () {
-		
-		const res = await fetch(`https://express-api.codeboxxtest.xyz/NFT/allowance/${checkAccount}`);
-		 
-		const data = await res.json();
-		console.log("Eligibility answer:", data)
-		if (data === true) {
-			window.location.replace('/portfolio');
-			
-			alert("Success ! Here comes your portfolio !")
-			
-		}
-		
+	onMount(async () => {
+		await defaultEvmStores.setProvider();
+		contractInstance = await getContract(NFTCONTRACT_ADDRESS);
+		console.log(contractInstance);
 	});
 
-// to add a button that will trigger the right redirection for the user, depending on its wallet content
+	async function getContract(address) {
+		const networkId = await $web3.eth.net.getId();
+
+		return new $web3.eth.Contract(
+			RocketTokenContract.abi,
+			'0x2f679c4fA4Fe7c1cB62D6fFbdC9879D3e221C93b',
+			{
+				from: address,
+				gas: 2000000
+			}
+		);
+	}
+
+	async function approve() {
+		try {
+			const res = await contractInstance.methods.approve(NFTCONTRACT_ADDRESS, 1).send({
+				from: $selectedAccount
+			});
+
+			console.log('approve res is:', res);
+			console.log('approve status is:', res.status);
+
+			isAddressEligible = res.status;
+		} catch (error) {
+			console.warn('approve error:', error);
+		}
+	}
+
+	// let isActive = false;
+	// to check if the nft smart contract allowance   ${checkAccount}
+	onMount(async function () {
+		const res = await fetch(`https://express-api.codeboxxtest.xyz/NFT/allowance/${checkAccount}`);
+
+		const data = await res.json();
+		if (data === true) {
+			// window.location.replace('/portfolio');
+
+			alert('Success ! Here comes your portfolio !');
+		}
+	});
+
+	// to add a button that will trigger the right redirection for the user, depending on its wallet content
 	// let user = { data: false };
 
 	// function toggle () {
 	// 	user.data = !user.data
 	// }
 
-	
-
-// 
+	//
 	// onMount(async function () {
 	// 	const tokenBlance = await fetch(`https://express-api.codeboxxtest.xyz/ERC20/balance/${checkAccount}`);
-	// 	console.log("the tokenBlance is:", tokenBlance); 
+	// 	console.log("the tokenBlance is:", tokenBlance);
 	// 	const data = await tokenBlance.json();
 	// 	console.log("Nb of tokens available:", data)
-		
+
 	// });
 
+	// to buy NFT with Rocket token
 
+	async function doPost() {
+		const res = await fetch(
+			`https://express-api.codeboxxtest.xyz/NFT/buyWithRocket/${checkAccount}`,
+			{
+				method: 'POST'
+			}
+		);
+		console.log('the mintNft is:', res);
+		// const json = await mintNft.json();
 
-
-// to buy NFT with Rocket token
-
-	async function doPost () {
-		const mintNft = await fetch(`https://express-api.codeboxxtest.xyz/NFT/buyWithRocket/${checkAccount}`, {
-		method: 'POST',
-		body: JSON.stringify({
-			
-		})
-	})
-		console.log("the mintNft is:", mintNft); 
-		const json = await mintNft.json()
-		result = JSON.stringify(json)
-		console.log(result)
-		// if (json === true) {
-		// 	window.location.replace('/portfolio');
-		// 	alert("Success ! Here comes your portfolio !")
-		
-		// }
-
-}
-
+		if (res.status === 200) {
+			window.location.replace('/portfolio');
+			alert('Success ! Here comes your portfolio !');
+		}
+	}
 </script>
 
 <svelte:head>
@@ -112,26 +107,21 @@
 
 <div class="todos">
 	<h1>Welcome to Rocket Elevator Minting !</h1>
-	
+
 	<div class="todos-wallet">
 		<h1>Your Wallet Address <span class="wallet">{checkAccount}</span></h1>
 
 		<!-- <h1>Your Account Balance <span class="wallet">{balance}</span></h1> -->
 
-		<button on:click={approve}>
-			Connect my wallet
-		</button> <br />
+		<button on:click={approve}> Connect my wallet </button> <br />
 
 		<div>
 			<!-- {#if isActive === true} -->
-			<button on:click={doPost}>
-				Buy NFT
-			</button>
 			<!-- {/if} -->
+			{#if isAddressEligible}
+				<button on:click={doPost}> Buy NFT </button>
+			{/if}
 		</div>
-		
-		
-		
 
 		<!-- {#if user.data}
 			<button on:click={toggle} href="/portfolio">Use my tokens !</button>
@@ -141,7 +131,6 @@
 			<button on:click={toggle} href="/portfolio">Buy tokens !</button>
 		{/if} -->
 	</div>
-	
 
 	<!-- <form
 		class="new"
@@ -195,7 +184,6 @@
 			</form>
 		</div>
 	{/each} -->
-
 </div>
 
 <style>
