@@ -5,10 +5,12 @@
 	import { onMount } from 'svelte';
 	import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web3'
 	import { defaultEvmStores } from 'svelte-web3'
+	
+
 
 // to add the connection with Metamask
     import RocketTokenContract from '../../RocketToken.json';
-import { page } from '$app/stores';
+	import { page } from '$app/stores';
     const NFTCONTRACT_ADDRESS = '0x5E2bB780fE31C097aF60A2D5B35726F102a75049';
 
     let contractInstance;
@@ -42,48 +44,62 @@ import { page } from '$app/stores';
         });
     }
 
-// to add a button that will trigger the right redirection for the user, depending on its wallet content
-	let user = { gift: false };
-	function toggle () {
-		user.gift = !user.gift
-	}
-// to check if the current user is eligible for free nft
+// let isActive = false;
+// to check if the nft smart contract allowance   ${checkAccount}
 	onMount(async function () {
-		const res = await fetch(`https://express-api.codeboxxtest.xyz/NFT/gift/${checkAccount}`);
-		console.log("the eligibility is:", res); 
+		
+		const res = await fetch(`https://express-api.codeboxxtest.xyz/NFT/allowance/${checkAccount}`);
+		 
 		const data = await res.json();
-		console.log("Eligibility answer:", data)	
-		// return res ? { redirect: "/portfolio", status: "" }
-	});
-// to check the current account balance of tokens
-	onMount(async function () {
-		const tokenBlance = await fetch(`https://express-api.codeboxxtest.xyz/ERC20/balance/0x57dE461153FD012cA41B2adFFd8E7A6D9B9cd520`);
-		console.log("the tokenBlance is:", tokenBlance); 
-		const data = await tokenBlance.json();
-		console.log("Nb of tokens available:", data)
+		console.log("Eligibility answer:", data)
+		if (data === true) {
+			window.location.replace('/portfolio');
+			
+			alert("Success ! Here comes your portfolio !")
+			
+		}
 		
 	});
 
-// if 
+// to add a button that will trigger the right redirection for the user, depending on its wallet content
+	// let user = { data: false };
+
+	// function toggle () {
+	// 	user.data = !user.data
+	// }
+
+	
+
+// 
+	// onMount(async function () {
+	// 	const tokenBlance = await fetch(`https://express-api.codeboxxtest.xyz/ERC20/balance/${checkAccount}`);
+	// 	console.log("the tokenBlance is:", tokenBlance); 
+	// 	const data = await tokenBlance.json();
+	// 	console.log("Nb of tokens available:", data)
+		
+	// });
 
 
-// to get free tokens if user doesn't have already	DO I NEED THAT NOW ???
-	let foo = 'baz'
-	let bar = 'qux'
-	let result = null 
+
+
+// to buy NFT with Rocket token
 
 	async function doPost () {
-		const mintNft = await fetch(`https://express-api.codeboxxtest.xyz/ERC20/balance/0xf4f555ca1586c40067cd215578f123d30813de02`, {
+		const mintNft = await fetch(`https://express-api.codeboxxtest.xyz/NFT/buyWithRocket/${checkAccount}`, {
 		method: 'POST',
 		body: JSON.stringify({
-			foo,
-			bar
+			
 		})
 	})
 		console.log("the mintNft is:", mintNft); 
 		const json = await mintNft.json()
 		result = JSON.stringify(json)
 		console.log(result)
+		// if (json === true) {
+		// 	window.location.replace('/portfolio');
+		// 	alert("Success ! Here comes your portfolio !")
+		
+		// }
 
 }
 
@@ -100,27 +116,28 @@ import { page } from '$app/stores';
 	<div class="todos-wallet">
 		<h1>Your Wallet Address <span class="wallet">{checkAccount}</span></h1>
 
-		<h1>Your Account Balance <span class="wallet">{balance}</span></h1>
+		<!-- <h1>Your Account Balance <span class="wallet">{balance}</span></h1> -->
 
 		<button on:click={approve}>
 			Connect my wallet
-		</button>
-							<!-- goto function ??? -->
-		<!-- {#if (approve) {
-			return {
-			redirect:"/portfolio"
-			}
-		  }
-		}
-		 
-		{/if} -->
+		</button> <br />
+
+		<div>
+			<!-- {#if isActive === true} -->
+			<button on:click={doPost}>
+				Buy NFT
+			</button>
+			<!-- {/if} -->
+		</div>
+		
+		
 		
 
-		<!-- {#if user.gift}
+		<!-- {#if user.data}
 			<button on:click={toggle} href="/portfolio">Use my tokens !</button>
 		{/if}
 
-		{#if !user.gift}
+		{#if !user.data}
 			<button on:click={toggle} href="/portfolio">Buy tokens !</button>
 		{/if} -->
 	</div>

@@ -1,12 +1,12 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from './svelte-logo.svg';
+	// import logo from './svelte-logo.svg';
 </script>
 
 <header>
 	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
+		<a href="https://www.mathieubernier.com">
+			<img src="./R2.png" alt="SvelteKit" />
 		</a>
 	</div>
 
@@ -56,15 +56,17 @@
 	}
 
 	.corner img {
-		width: 2em;
-		height: 2em;
+		width: 8em;
+		height: 8em;
 		object-fit: contain;
+		padding-top: 25px;
+		padding-left: 125px;
 	}
 
 	nav {
 		display: flex;
 		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
+		--background: rgb(255, 255, 255);
 	}
 
 	svg {
