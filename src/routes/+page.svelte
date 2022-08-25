@@ -13,20 +13,15 @@
 		<!-- <span class="welcome">
 			<picture>
 				<source srcset="svelte-welcome.webp" type="image/webp" />
-				<img src="svelte-welcome.png" alt="Welcome" />
+				<img src="RocketElevatorsNFTImage_1.png" alt="Welcome" />
 			</picture>
 		</span> -->
 
-		This is<br />the Home page for Svelte app
+		Rocket Elevators<br />NFT art is coming to you
 	</h1>
 
-	<h2>
-		This could be a paragraph <strong>src/routes/+page.svelte</strong>
-	</h2>
-	<h2>
-		Content of the home page : details about the nft collection (to my discretion) and 
-		a Call to Action to reach the nft page.
-	</h2>
+	
+	
 	<p>
 		To our most loyal customer, we are proud to present to you our limited NFT collection of elevator themed artwork !
 		<br />
@@ -35,11 +30,12 @@
 	<p>
 		You want to be more involve in your commmunity ? Let's join our force and help us finance special foundation that are doing
 		incredible work around those who suffered elevator related traumas in their life. 
-		<br />
-		Let's support financially those fundations and buy an <strong><a href="/nftgood">NFT</a></strong> !
 	</p>
 
-	<!-- <Counter /> -->
+	<h1>
+		Let's support financially those fundations <br />and buy an <strong><a href="/nftgood">NFT</a></strong> !
+	</h1>
+
 </section>
 
 <style>
@@ -57,6 +53,7 @@
 
 	p {
 		text-align: center;
+		font-size: 18px;
 	}
 
 	.welcome {

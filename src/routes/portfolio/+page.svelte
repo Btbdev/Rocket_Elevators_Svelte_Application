@@ -6,6 +6,8 @@
 	// import { onMount } from 'svelte';
 	import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web3'
 	import { defaultEvmStores } from 'svelte-web3'
+	import { Circle } from 'svelte-loading-spinners'
+
 // to add the connection with Metamask
 	
 import RocketTokenContract from '../../RocketToken.json';
@@ -113,6 +115,14 @@ import RocketTokenContract from '../../RocketToken.json';
 		// });
 
 	});
+
+// to show the spinner when page is loading the nfts
+	// let isPageLoaded = false;
+	
+	// onMount(() => {
+	// 	isPageLoaded = true;
+	// });
+
 </script>
 
 <svelte:head>
@@ -121,9 +131,17 @@ import RocketTokenContract from '../../RocketToken.json';
 </svelte:head>
 
 <div class="todos">
+
 	
+
 	<div class="divWrapper">
 		<h1>NFT cards</h1>
+		<!-- {#if !isPageLoaded} -->
+		<div class="spinner">
+			<Circle size="100" color="rgb(199, 20, 46)" unit="px" duration="5s"></Circle>
+		</div>
+		<!-- {/if} -->
+
 		<div class='wrapperCard'>	
 			{#each nfts as nft}
 				<Card>
@@ -267,4 +285,11 @@ import RocketTokenContract from '../../RocketToken.json';
 		max-width: 200px;
 		padding-top: 20px;
 	}	
+
+	.spinner {
+		display: flex;
+		/* position: fixed; */
+		justify-content: center;
+		padding-top: 30px;
+	}
 </style>
