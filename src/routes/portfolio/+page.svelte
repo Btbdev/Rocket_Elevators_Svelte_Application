@@ -3,7 +3,41 @@
 	import { scale } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import Card from '../shared/card.svelte';
+	// import { onMount } from 'svelte';
+	import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web3'
+	import { defaultEvmStores } from 'svelte-web3'
+// to add the connection with Metamask
 	
+import RocketTokenContract from '../../RocketToken.json';
+    const NFTCONTRACT_ADDRESS = '0x5E2bB780fE31C097aF60A2D5B35726F102a75049';
+
+    let contractInstance;
+
+    $: checkAccount = $selectedAccount || '0x0000000000000000000000000000000000000000'
+    $: balance = $connected ? $web3.eth.getBalance(checkAccount) : ''
+
+	onMount(
+      async () => {
+         await defaultEvmStores.setProvider()
+        contractInstance = await getContract(NFTCONTRACT_ADDRESS)
+        console.log(contractInstance)
+      })
+
+	async function getContract(address) {
+      const networkId = await $web3.eth.net.getId();
+      
+      
+      return new $web3.eth.Contract(
+          RocketTokenContract.abi,
+        "0x2f679c4fA4Fe7c1cB62D6fFbdC9879D3e221C93b", {
+          from: address,
+          gas: 2000000
+        }
+      );
+    }
+
+
+
 	let array = [{}
 		// {
 		// 	"name": "Rocket Elevators #1",
@@ -51,15 +85,15 @@
 	/** @type {import('./$types').PageData} */
 	export let data;
 
-// <!-- to add a test Mathieu portfolios cards-->
+// <!-- to add the current user portfolio -->
 
 	import { onMount } from "svelte";
 
 	let nfts = [];
-	
-
+// to check display for 10 nfts : 0x1E90cf48F11Dd52802eC7D1AF7082122A6a59312 or the current user's one ${checkAccount}
+// to retrieve the tokens owned by a wallet  
 	onMount(async () => {
-		const nft = await fetch(`https://express-api.codeboxxtest.xyz/NFT/getWalletTokens/${checkAccount}`);
+		const nft = await fetch(`https://express-api.codeboxxtest.xyz/NFT/getWalletTokens/0x1E90cf48F11Dd52802eC7D1AF7082122A6a59312`);
 		console.log("What is nft:", nft)
 		nfts = await nft.json();
 		// .then(response => response.json())
@@ -78,28 +112,7 @@
 		// 	return [];
 		// });
 
-
-		// console.log("the nfts are:", nft); 
-		// const data = await nft.json();
-		// console.log(data)
-
 	});
-	
-
-	// import { onMount } from "svelte";
-	// import { apiData, drinkNames } from './store.js';
-	
-	// onMount(async () => {
-	//   fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Bourbon")
-	//   .then(response => response.json())
-	//   .then(data => {
-	// 		console.log(data);
-	// 	apiData.set(data);
-	//   }).catch(error => {
-	// 	console.log(error);
-	// 	return [];
-	//   });
-	// });
 </script>
 
 <svelte:head>
@@ -108,60 +121,7 @@
 </svelte:head>
 
 <div class="todos">
-	<!-- <h1>Portfolio - ici le test initial de l'app crée un form via api.js et fait des get/ftech etc...</h1>
-
-	<form
-		class="new"
-		action="/todos"
-		method="post"
-		use:enhance={{
-			result: async ({ form }) => {
-				form.reset();
-			}
-		}}
-	>
-		<input name="text" aria-label="Add todo" placeholder="+ tap to add a todo" />
-	</form>
-
-	{#each data.todos as todo (todo.uid)}
-		<div
-			class="todo"
-			class:done={todo.done}
-			transition:scale|local={{ start: 0.7 }}
-			animate:flip={{ duration: 200 }}
-		>
-			<form
-				action="/todos?_method=PATCH"
-				method="post"
-				use:enhance={{
-					pending: ({ data }) => {
-						todo.done = !!data.get('done');
-					}
-				}}
-			>
-				<input type="hidden" name="uid" value={todo.uid} />
-				<input type="hidden" name="done" value={todo.done ? '' : 'true'} />
-				<button class="toggle" aria-label="Mark todo as {todo.done ? 'not done' : 'done'}" />
-			</form>
-
-			<form class="text" action="/todos?_method=PATCH" method="post" use:enhance>
-				<input type="hidden" name="uid" value={todo.uid} />
-				<input aria-label="Edit todo" type="text" name="text" value={todo.text} />
-				<button class="save" aria-label="Save todo" />
-			</form>
-
-			<form
-				action="/todos?_method=DELETE"
-				method="post"
-				use:enhance={{
-					pending: () => (todo.pending_delete = true)
-				}}
-			>
-				<input type="hidden" name="uid" value={todo.uid} />
-				<button class="delete" aria-label="Delete todo" disabled={todo.pending_delete} />
-			</form>
-		</div>
-	{/each} -->
+	
 	<div class="divWrapper">
 		<h1>NFT cards</h1>
 		<div class='wrapperCard'>	
@@ -177,17 +137,6 @@
 			{/each}
 		</div>
 	</div>	
-
-	<!-- <div class="todos">
-		<h1>Display of cards with NFT collection available to buy. The details to render are copming from endpoints to show object "" title name, description and image</h1>
-		<h1>Whiskey Drinks Menu</h1>
-		<ul>
-		{#each $drinkNames as drinkName}
-			<li>{drinkName}</li>
-		{/each}
-		</ul>
-	
-	</div> -->
 </div>
 
 <style>

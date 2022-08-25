@@ -7,8 +7,8 @@
 	import { defaultEvmStores } from 'svelte-web3'
 
 // to add the connection with Metamask
-	
     import RocketTokenContract from '../../RocketToken.json';
+import { page } from '$app/stores';
     const NFTCONTRACT_ADDRESS = '0x5E2bB780fE31C097aF60A2D5B35726F102a75049';
 
     let contractInstance;
@@ -42,28 +42,32 @@
         });
     }
 
-// to add a button that will trigger the right redirecttion for the user, depending on its wallet content
+// to add a button that will trigger the right redirection for the user, depending on its wallet content
 	let user = { gift: false };
 	function toggle () {
 		user.gift = !user.gift
 	}
-
+// to check if the current user is eligible for free nft
 	onMount(async function () {
-		const res = await fetch(`https://express-api.codeboxxtest.xyz/NFT/gift/0x57dE461153FD012cA41B2adFFd8E7A6D9B9cd520`);
-		console.log("the gift is:", res); 
+		const res = await fetch(`https://express-api.codeboxxtest.xyz/NFT/gift/${checkAccount}`);
+		console.log("the eligibility is:", res); 
 		const data = await res.json();
-		console.log(data)	
-		
+		console.log("Eligibility answer:", data)	
+		// return res ? { redirect: "/portfolio", status: "" }
 	});
-
+// to check the current account balance of tokens
 	onMount(async function () {
 		const tokenBlance = await fetch(`https://express-api.codeboxxtest.xyz/ERC20/balance/0x57dE461153FD012cA41B2adFFd8E7A6D9B9cd520`);
 		console.log("the tokenBlance is:", tokenBlance); 
 		const data = await tokenBlance.json();
-		console.log(data)
-
+		console.log("Nb of tokens available:", data)
+		
 	});
-	
+
+// if 
+
+
+// to get free tokens if user doesn't have already	DO I NEED THAT NOW ???
 	let foo = 'baz'
 	let bar = 'qux'
 	let result = null 
@@ -76,31 +80,12 @@
 			bar
 		})
 	})
-		console.log("the minnft is:", mintNft); 
+		console.log("the mintNft is:", mintNft); 
 		const json = await mintNft.json()
 		result = JSON.stringify(json)
 		console.log(result)
 
 }
-
-// <!-- to add a test Mathieu -->
-	/** @type {import('./$types').PageData} */
-	export let data;
-
-	
-	import { apiData, drinkNames } from './store.js';
-	
-	onMount(async () => {
-	  fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Bourbon")
-	  .then(response => response.json())
-	  .then(data => {
-			console.log(data);
-		apiData.set(data);
-	  }).catch(error => {
-		console.log(error);
-		return [];
-	  });
-	});
 
 </script>
 
@@ -110,30 +95,36 @@
 </svelte:head>
 
 <div class="todos">
-	<h1>Let's check your wallet</h1>
+	<h1>Welcome to Rocket Elevator Minting !</h1>
 	
 	<div class="todos-wallet">
-		<h1>Wallet address {checkAccount}</h1>
+		<h1>Your Wallet Address <span class="wallet">{checkAccount}</span></h1>
+
+		<h1>Your Account Balance <span class="wallet">{balance}</span></h1>
 
 		<button on:click={approve}>
-			Click me
+			Connect my wallet
 		</button>
-		{#if user.gift}
+							<!-- goto function ??? -->
+		<!-- {#if (approve) {
+			return {
+			redirect:"/portfolio"
+			}
+		  }
+		}
+		 
+		{/if} -->
+		
+
+		<!-- {#if user.gift}
 			<button on:click={toggle} href="/portfolio">Use my tokens !</button>
-				<!-- Use my tokens and buy NFT !
-			</button> -->
 		{/if}
 
 		{#if !user.gift}
 			<button on:click={toggle} href="/portfolio">Buy tokens !</button>
-				<!-- Buy Tokens
-			</button> -->
-		{/if}
+		{/if} -->
 	</div>
-	<div class="todos">
-		<!-- <h1>Account balance</h1> -->
-		
-	</div>
+	
 
 	<!-- <form
 		class="new"
@@ -188,16 +179,6 @@
 		</div>
 	{/each} -->
 
-	<!-- <div class="todos">
-		<h1>Display of cards with NFT collection available to buy. The details to render are copming from endpoints to show title name, description and image</h1>
-		<h1>Whiskey Drinks Menu</h1>
-		<ul>
-		{#each $drinkNames as drinkName}
-			<li>{drinkName}</li>
-		{/each}
-		</ul>
-	</div> -->
-
 </div>
 
 <style>
@@ -210,6 +191,10 @@
 
 	.todos-wallet {
 		text-align: center;
+	}
+
+	.wallet {
+		font-size: 20px;
 	}
 
 	.new {
