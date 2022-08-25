@@ -16,11 +16,11 @@
 		</svg>
 		<ul>
 			<li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Home</a></li>
-			<li class:active={$page.url.pathname === '/nft'}>
+			<!-- <li class:active={$page.url.pathname === '/nft'}>
 				<a sveltekit:prefetch href="/nft">NFT Minting to be erased...</a>
-			</li>
+			</li> -->
 			<li class:active={$page.url.pathname === '/nftgood'}>
-				<a sveltekit:prefetch href="/nftgood">NFT Minting GOOD</a>
+				<a sveltekit:prefetch href="/nftgood">NFT Minting</a>
 			</li>
 			<li class:active={$page.url.pathname === '/todos'}>
 				<a sveltekit:prefetch href="/portfolio">Portfolio</a>
