@@ -1,5 +1,6 @@
 ROCKET_ELEVATORS_SVELTE_APPLICATION
 
+Don't forget
 
 # create-svelte
 
