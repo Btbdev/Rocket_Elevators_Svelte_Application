@@ -5,6 +5,7 @@
 	import { onMount } from 'svelte';
 	import { connected, web3, selectedAccount, chainId, chainData } from 'svelte-web3';
 	import { defaultEvmStores } from 'svelte-web3';
+	import { Button } from 'sveltestrap';
 
 	// to add the connection with Metamask
 	import RocketTokenContract from '../../RocketToken.json';
@@ -65,22 +66,6 @@
 		}
 	});
 
-	// to add a button that will trigger the right redirection for the user, depending on its wallet content
-	// let user = { data: false };
-
-	// function toggle () {
-	// 	user.data = !user.data
-	// }
-
-	//
-	// onMount(async function () {
-	// 	const tokenBlance = await fetch(`https://express-api.codeboxxtest.xyz/ERC20/balance/${checkAccount}`);
-	// 	console.log("the tokenBlance is:", tokenBlance);
-	// 	const data = await tokenBlance.json();
-	// 	console.log("Nb of tokens available:", data)
-
-	// });
-
 	// to buy NFT with Rocket token
 
 	async function doPost() {
@@ -103,6 +88,10 @@
 <svelte:head>
 	<title>NFT minting</title>
 	<meta name="description" content="A todo list app" />
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+	/>
 </svelte:head>
 
 <div class="todos">
@@ -111,11 +100,11 @@
 	<div class="todos-wallet">
 		<h1>Your Wallet Address <span class="wallet">{checkAccount}</span></h1>
 
-		<button class="button" on:click={approve}> Connect my wallet </button> <br />
+		<Button color="primary" size="lg" on:click={approve}>Connect my wallet</Button> <br />
 
 		<div class="button-buy">
 			{#if isAddressEligible}
-				<button class="button" on:click={doPost}> Buy NFT </button>
+				<Button color="danger" size="lg" on:click={doPost}>Buy NFT</Button>
 			{/if}
 		</div>
 	</div>

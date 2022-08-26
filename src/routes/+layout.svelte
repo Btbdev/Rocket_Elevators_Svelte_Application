@@ -9,9 +9,7 @@
 	<slot />
 </main>
 
-<footer>
-	<p>Dans layout.svelte -Footer automatique de Svelte avec lien cliquable !<a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-</footer>
+<footer />
 
 <style>
 	main {
