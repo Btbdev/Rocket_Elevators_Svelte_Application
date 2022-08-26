@@ -5,12 +5,12 @@
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
 	--pure-white: #ffffff;
-	--primary-color: rgb(178, 206, 238);  
+	--primary-color: rgb(178, 206, 238);
 	--secondary-color: #9bc1e4;
-	--tertiary-color: #98bcdd;
+	--tertiary-color: #5e6164;
 	--accent-color: rgb(199, 20, 46);
 	--heading-color: rgba(0, 0, 0, 0.7);
-	--text-color: #444444;
+	--text-color: #5e5e5e;
 	--background-without-opacity: rgba(255, 255, 255, 0.7);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
@@ -23,8 +23,8 @@ body {
 	background: linear-gradient(
 		180deg,
 		var(--primary-color) 0%,
-		var(--secondary-color) 15.45%,
-		var(--tertiary-color) 21.35%
+		var(--secondary-color) 45.45%,
+		var(--tertiary-color) 98.35%
 	);
 }
 

@@ -30,6 +30,7 @@
 		"bootstrap": "^5.2.0",
 		"cookie": "^0.4.1",
 		"framework7-svelte": "^7.0.7",
+		"svelte-images": "^0.0.95",
 		"svelte-materialify": "^0.3.11",
 		"svelte-web3": "^3.5.2",
 		"sveltestrap": "^5.9.0",
