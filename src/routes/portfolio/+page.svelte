@@ -37,50 +37,6 @@
 		);
 	}
 
-	// let array = [
-	// {}
-	// {
-	// 	"name": "Rocket Elevators #1",
-	// 	"description": "Rocket Elevators NFT Collection",
-	// 	"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
-	// },
-	// {
-	// 	"name": "Rocket Elevators #2",
-	// 	"description": "Rocket Elevators NFT Collection",
-	// 	"image": "https://ipfs.moralis.io:2053/ipfs/Qmf56Wu8Jwb77i1AjeJ1GniNEQfa8rWF8ZF7zUdZ4wchQK/RocketElevatorsNFTImage_2.png"
-	// },
-	// {
-	// 	"name": "Rocket Elevators #3",
-	// 	"description": "Rocket Elevators NFT Collection",
-	// 	"image": "https://ipfs.moralis.io:2053/ipfs/QmfTx5aCvkkJKyYRQ1WyCVfvuRDzX5CKxTsuGzNGr18XVn/RocketElevatorsNFTImage_3.png"
-	// },
-	// {
-	// 	"name": "Rocket Elevators #4",
-	// 	"description": "Rocket Elevators NFT Collection",
-	// 	"image": "https://ipfs.moralis.io:2053/ipfs/Qmd6DwwKr9ncFdsuK3Lvc9rDm6m3MPGyQSyN6NA4rFz77C/RocketElevatorsNFTImage_4.png"
-	// },
-	// {
-	// 	"name": "Rocket Elevators #5",
-	// 	"description": "Rocket Elevators NFT Collection",
-	// 	"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
-	// },
-	// {
-	// 	"name": "Rocket Elevators #6",
-	// 	"description": "Rocket Elevators NFT Collection",
-	// 	"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
-	// },
-	// {
-	// 	"name": "Rocket Elevators #7",
-	// 	"description": "Rocket Elevators NFT Collection",
-	// 	"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
-	// },
-	// {
-	// 	"name": "Rocket Elevators #8",
-	// 	"description": "Rocket Elevators NFT Collection",
-	// 	"image": "https://ipfs.moralis.io:2053/ipfs/QmU79SpmSA3xReg6FSiR7ZpTifTC6H2VAZfUNY5deCS4ZY/RocketElevatorsNFTImage_1.png"
-	// },
-	// ];
-
 	/** @type {import('./$types').PageData} */
 	// export let data;
 
