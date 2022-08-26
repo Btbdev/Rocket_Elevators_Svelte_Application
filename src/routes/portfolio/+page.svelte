@@ -125,6 +125,9 @@
 			<div class="spinner">
 				<Circle size="100" color="rgb(199, 20, 46)" unit="px" duration="5s" />
 			</div>
+			<div class="spinner">
+				<h3>Our collection is loading...</h3>
+			</div>
 		{/if}
 
 		<div class="wrapperCard">
@@ -270,5 +273,9 @@
 		display: flex;
 		justify-content: center;
 		padding-top: 30px;
+	}
+
+	h3  {
+		justify-content: center;
 	}
 </style>
