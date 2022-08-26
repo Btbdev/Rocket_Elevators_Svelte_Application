@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+vendor
 /build
 /.svelte-kit
 /package
@@ -8,4 +9,4 @@ node_modules
 !.env.example
 .vercel
 .output
-vendor
+
