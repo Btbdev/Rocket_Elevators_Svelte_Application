@@ -16,9 +16,6 @@
 		</svg>
 		<ul>
 			<li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Home</a></li>
-			<!-- <li class:active={$page.url.pathname === '/nft'}>
-				<a sveltekit:prefetch href="/nft">NFT Minting to be erased...</a>
-			</li> -->
 			<li class:active={$page.url.pathname === '/nftgood'}>
 				<a sveltekit:prefetch href="/nftgood">NFT Minting</a>
 			</li>
@@ -43,7 +40,7 @@
 	}
 
 	.corner {
-		width: 3em;
+		width: 4em;
 		height: 3em;
 	}
 
@@ -56,11 +53,11 @@
 	}
 
 	.corner img {
-		width: 8em;
-		height: 8em;
+		width: 10em;
+		height: 10em;
 		object-fit: contain;
 		padding-top: 25px;
-		padding-left: 125px;
+		padding-left: 175px;
 	}
 
 	nav {

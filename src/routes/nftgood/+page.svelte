@@ -106,84 +106,19 @@
 </svelte:head>
 
 <div class="todos">
-	<h1>Welcome to Rocket Elevator Minting !</h1>
+	<h1>Welcome to Rocket Elevator Minting!</h1>
 
 	<div class="todos-wallet">
 		<h1>Your Wallet Address <span class="wallet">{checkAccount}</span></h1>
 
-		<!-- <h1>Your Account Balance <span class="wallet">{balance}</span></h1> -->
+		<button class="button" on:click={approve}> Connect my wallet </button> <br />
 
-		<button on:click={approve}> Connect my wallet </button> <br />
-
-		<div>
-			<!-- {#if isActive === true} -->
-			<!-- {/if} -->
+		<div class="button-buy">
 			{#if isAddressEligible}
-				<button on:click={doPost}> Buy NFT </button>
+				<button class="button" on:click={doPost}> Buy NFT </button>
 			{/if}
 		</div>
-
-		<!-- {#if user.data}
-			<button on:click={toggle} href="/portfolio">Use my tokens !</button>
-		{/if}
-
-		{#if !user.data}
-			<button on:click={toggle} href="/portfolio">Buy tokens !</button>
-		{/if} -->
 	</div>
-
-	<!-- <form
-		class="new"
-		action="/todos"
-		method="post"
-		use:enhance={{
-			result: async ({ form }) => {
-				form.reset();
-			}
-		}}
-	>
-		<input name="text" aria-label="Add todo" placeholder="+ tap to add a todo" />
-	</form>
-
-	{#each data.todos as todo (todo.uid)}
-		<div
-			class="todo"
-			class:done={todo.done}
-			transition:scale|local={{ start: 0.7 }}
-			animate:flip={{ duration: 200 }}
-		>
-			<form
-				action="/todos?_method=PATCH"
-				method="post"
-				use:enhance={{
-					pending: ({ data }) => {
-						todo.done = !!data.get('done');
-					}
-				}}
-			>
-				<input type="hidden" name="uid" value={todo.uid} />
-				<input type="hidden" name="done" value={todo.done ? '' : 'true'} />
-				<button class="toggle" aria-label="Mark todo as {todo.done ? 'not done' : 'done'}" />
-			</form>
-
-			<form class="text" action="/todos?_method=PATCH" method="post" use:enhance>
-				<input type="hidden" name="uid" value={todo.uid} />
-				<input aria-label="Edit todo" type="text" name="text" value={todo.text} />
-				<button class="save" aria-label="Save todo" />
-			</form>
-
-			<form
-				action="/todos?_method=DELETE"
-				method="post"
-				use:enhance={{
-					pending: () => (todo.pending_delete = true)
-				}}
-			>
-				<input type="hidden" name="uid" value={todo.uid} />
-				<button class="delete" aria-label="Delete todo" disabled={todo.pending_delete} />
-			</form>
-		</div>
-	{/each} -->
 </div>
 
 <style>
@@ -301,5 +236,21 @@
 	.save:focus {
 		transition: opacity 0.2s;
 		opacity: 1;
+	}
+
+	.button {
+		background-color: #fff;
+		height: 50px;
+		width: 100%;
+		font-size: 18px;
+	}
+
+	.button-buy {
+		padding-top: 50px;
+	}
+
+	h1 {
+		padding-top: 25px;
+		padding-bottom: 100px;
 	}
 </style>

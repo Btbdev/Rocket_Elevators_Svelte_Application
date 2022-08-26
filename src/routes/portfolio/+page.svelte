@@ -92,17 +92,14 @@
 	let isPageLoaded = false;
 	let nfts = [];
 	// to check display for 10 nfts : 0x1E90cf48F11Dd52802eC7D1AF7082122A6a59312 or the current user's one ${checkAccount}
-	// to retrieve the tokens owned by a wallet
 	onMount(async () => {
 		try {
 			const nft = await fetch(
 				`https://express-api.codeboxxtest.xyz/NFT/getWalletTokens/0x1E90cf48F11Dd52802eC7D1AF7082122A6a59312`
 			);
 			console.log('What is nft:', nft);
-			isPageLoaded = nft.status;
-		} catch (error) {
-			console.warn('loaded page ?:', error);
-
+			isPageLoaded = nft.ok;
+			console.log('Test:', isPageLoaded);
 			nfts = await nft.json();
 			// .then(response => response.json())
 			console.log('What is nfts:', nfts);
@@ -110,6 +107,8 @@
 			nfts.map((e) => {
 				console.log(e);
 			});
+		} catch (error) {
+			console.warn('loaded page ?:', error);
 		}
 	});
 </script>
@@ -121,7 +120,7 @@
 
 <div class="todos">
 	<div class="divWrapper">
-		<h1>NFT cards</h1>
+		<h1>Our NFT cards collection</h1>
 		{#if !isPageLoaded}
 			<div class="spinner">
 				<Circle size="100" color="rgb(199, 20, 46)" unit="px" duration="5s" />
@@ -263,15 +262,12 @@
 	}
 
 	.image {
-		/* display: flex; */
-		/* justify-content: center; */
 		max-width: 200px;
 		padding-top: 20px;
 	}
 
 	.spinner {
 		display: flex;
-		/* position: fixed; */
 		justify-content: center;
 		padding-top: 30px;
 	}
