@@ -1,5 +1,6 @@
 ROCKET_ELEVATORS_SVELTE_APPLICATION
 
+Test for deploy
 
 # create-svelte
 
