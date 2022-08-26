@@ -13,9 +13,6 @@
 	import RocketTokenContract from '../../RocketToken.json';
 	const NFTCONTRACT_ADDRESS = '0x5E2bB780fE31C097aF60A2D5B35726F102a75049';
 
-	// to show the spinner when page is loading the nfts
-	let isPageLoaded = false;
-
 	let contractInstance;
 
 	$: checkAccount = $selectedAccount || '0x0000000000000000000000000000000000000000';
@@ -91,28 +88,29 @@
 
 	import { onMount } from 'svelte';
 
+	// to show the spinner when page is loading the nfts
+	let isPageLoaded = false;
 	let nfts = [];
 	// to check display for 10 nfts : 0x1E90cf48F11Dd52802eC7D1AF7082122A6a59312 or the current user's one ${checkAccount}
 	// to retrieve the tokens owned by a wallet
 	onMount(async () => {
-		const nft = await fetch(
-			`https://express-api.codeboxxtest.xyz/NFT/getWalletTokens/0x1E90cf48F11Dd52802eC7D1AF7082122A6a59312`
-		);
-		console.log('What is nft:', nft);
-		nfts = await nft.json();
-		// .then(response => response.json())
-		console.log('What is nfts:', nfts);
-		nfts.map((e) => {
-			console.log(e);
-		});
+		try {
+			const nft = await fetch(
+				`https://express-api.codeboxxtest.xyz/NFT/getWalletTokens/0x1E90cf48F11Dd52802eC7D1AF7082122A6a59312`
+			);
+			console.log('What is nft:', nft);
+			isPageLoaded = nft.status;
+		} catch (error) {
+			console.warn('loaded page ?:', error);
 
-		// .then(data => {
-		// 	console.log("What is data:", data);
-		// 	array.set(data);
-		// }).catch(error => {
-		// 	console.log(error);
-		// 	return [];
-		// });
+			nfts = await nft.json();
+			// .then(response => response.json())
+			console.log('What is nfts:', nfts);
+
+			nfts.map((e) => {
+				console.log(e);
+			});
+		}
 	});
 </script>
 
@@ -124,11 +122,11 @@
 <div class="todos">
 	<div class="divWrapper">
 		<h1>NFT cards</h1>
-		<!-- {#if !isPageLoaded} -->
-		<div class="spinner">
-			<Circle size="100" color="rgb(199, 20, 46)" unit="px" duration="5s" />
-		</div>
-		<!-- {/if} -->
+		{#if !isPageLoaded}
+			<div class="spinner">
+				<Circle size="100" color="rgb(199, 20, 46)" unit="px" duration="5s" />
+			</div>
+		{/if}
 
 		<div class="wrapperCard">
 			{#each nfts as nft}
