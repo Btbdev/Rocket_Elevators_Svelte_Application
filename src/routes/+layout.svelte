@@ -9,9 +9,7 @@
 	<slot />
 </main>
 
-<footer>
-	<p>Dans layout.svelte -Footer automatique de Svelte avec lien cliquable !<a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-</footer>
+<footer />
 
 <style>
 	main {
@@ -33,13 +31,17 @@
 		padding: 40px;
 	}
 
-	footer a {
+	/* footer a {
 		font-weight: bold;
-	}
+	} */
 
 	@media (min-width: 480px) {
 		footer {
 			padding: 40px 0;
 		}
 	}
+
+	/* p {
+		color: #fff;
+	} */
 </style>

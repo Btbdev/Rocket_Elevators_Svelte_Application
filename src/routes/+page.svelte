@@ -1,31 +1,5 @@
 <script>
-	// import Counter from '$lib/Counter.svelte';
-	// import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 	import Card from './shared/card.svelte';
-	// import { Swiper, SwiperSlide } from 'swiper/svelte';
-	// import { Images } from 'svelte-images';
-	// import { Carousel } from 'svelte-images';
-
-	// const { Modal, open, close } = Carousel;
-
-	// export let images = [];
-
-	// const popModal = (idx) =>
-	// 	setTimeout(() => {
-	// 		open(images, idx);
-	// 	}, 0);
-
-	// const images = [
-	// 	{
-	// 		src: '/nfts.png'
-	// 	},
-	// 	{
-	// 		src: '/RocketElevatorsNFTImage_1.png'
-	// 	},
-	// 	{
-	// 		src: '/RocketElevatorsNFTImage_23.png'
-	// 	}
-	// ];
 
 	let array = [
 		{
@@ -74,7 +48,7 @@
 	</p>
 
 	<h1>
-		Let's support financially those foundations <br />and buy an
+		Let's support financially those foundations <br />and buy a
 		<strong><a href="/nftgood">NFT</a></strong>!
 	</h1>
 </section>
@@ -99,31 +73,6 @@
 		text-align: center;
 		font-size: 24px;
 		color: #fff;
-	}
-
-	/* .welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	} */
-
-	main {
-		height: 75vh;
-	}
-
-	.gallery {
-		display: flex;
-		flex-flow: row wrap;
 	}
 
 	img {
