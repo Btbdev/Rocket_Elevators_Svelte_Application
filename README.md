@@ -14,11 +14,11 @@ On the minting page, the customer is invited to connected is wallet (Metamask) a
 
 | NFT Minting |
 
-<img src="Nft.png" alt="nft"/>
+<img src="static/Nft.png" alt="nft"/>
 
 | Portfolio |
 
-<img src="Portfilio.png" alt="portfolio"/>
+<img src="static/Portfilio.png" alt="portfolio"/>
 
 Below, you will find the most important NPM commands to use the application.
 
