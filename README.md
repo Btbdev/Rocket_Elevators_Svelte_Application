@@ -10,7 +10,7 @@ On the minting page, the customer is invited to connected is wallet (Metamask) a
 
 | Home |
 
-<img src="Home.png" alt="home"/>
+<img src="static/Home.png" alt="home"/>
 
 | NFT Minting |
 
