@@ -18,7 +18,7 @@ On the minting page, the customer is invited to connected is wallet (Metamask) a
 
 | Portfolio |
 
-<img src="static/Portfilio.png" alt="portfolio"/>
+<img src="static/Portfolio.png" alt="portfolio"/>
 
 Below, you will find the most important NPM commands to use the application.
 
