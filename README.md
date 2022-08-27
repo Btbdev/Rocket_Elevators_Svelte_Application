@@ -1,6 +1,26 @@
 ROCKET_ELEVATORS_SVELTE_APPLICATION
 
-Don't forget
+This week's project is the introduction of Rocket Elevators to the world of NFTs !
+
+A web application, created with Svelte, is allowing the customer of Rocket Elevator to fund special foundations helping with elevators traumas.
+
+The app is deployed on Vercel at the followinf address : https://rocket-elevators-svelte-application-2kzy4aiu2-btbdev.vercel.app/
+
+On the minting page, the customer is invited to connected is wallet (Metamask) and will be able to buy NFTs with Rocket Elevators tokens.
+
+| Home |
+
+<img src="Home.png" alt="home"/>
+
+| NFT Minting |
+
+<img src="Nft.png" alt="nft"/>
+
+| Portfolio |
+
+<img src="Portfilio.png" alt="portfolio"/>
+
+Below, you will find the most important NPM commands to use the application.
 
 # create-svelte
 
