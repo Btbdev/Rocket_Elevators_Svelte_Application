@@ -10,8 +10,6 @@ const config = {
 			allowed: ['PATCH', 'DELETE']
 		}
 	}
-	
 };
-
 
 export default config;
